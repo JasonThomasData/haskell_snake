@@ -6,5 +6,5 @@ cabal install ansi-terminal
 cabal install hUnit
 
 # Make
-ghc --make src/snake.hs src/main.hs -o snake_game -odir
-ghc --make src/snake.hs src/tests.hs -o tests -odir
+ghc --make src/snake.hs -hidir build -odir build src/main.hs -o bin/snake_game
+ghc --make src/snake.hs -hidir build -odir build src/tests.hs -o bin/tests
