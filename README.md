@@ -8,10 +8,10 @@
 
 # Build
 
-    ghc --make src/snake.hs -hidir build -odir build src/main.hs -o bin/snake_game
-    ghc --make src/snake.hs -hidir build -odir build src/tests.hs -o bin/tests
+    ghc src/snake.hs src/view.hs src/io.hs -hidir build -odir build src/main.hs -o bin/snake_game
+    ghc src/snake.hs src/view.hs src/io.hs -hidir build -odir build src/tests.hs -o bin/tests
 
 # Run
 
-    ./bin/snake_game
     ./bin/tests
+    ./bin/snake_game
