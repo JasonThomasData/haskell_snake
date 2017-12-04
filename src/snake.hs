@@ -32,9 +32,9 @@ game_loop snake direction board_limits targets delay = do
 
 render :: [(Int,Int)] -> (Int,Int) -> [(Int,Int)] -> IO ()
 render snake board_x_y targets = do
-    let board_view = create_board_view [] (fst board_x_y) (snd board_x_y) snake targets
+    let board_view = create_board [] (fst board_x_y) (snd board_x_y) snake targets
     cursorUpLine 20
-    display_board_view board_view
+    display_board board_view
 
 --GameLogic
 
