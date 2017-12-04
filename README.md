@@ -1,3 +1,7 @@
+I've been learning Haskell and having fun with it. This is a snake game and my first decent
+crack at making a Haskell program. The program is modular enough to use a different view in
+future but for now it's a terminal game.
+
 # Dependencies
 
     sudo apt-get install ghc
