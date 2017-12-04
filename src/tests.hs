@@ -1,7 +1,7 @@
 import Test.HUnit
-import Snake (create_board, create_new_head, create_new_tail,
-              update_snake, get_objects_in_row, check_column_occupied,
-              create_row)
+
+import Snake (create_new_head, create_new_tail, update_snake)
+import View (create_board, get_objects_in_row, check_column_occupied, create_row)
 
 test_create_new_head_1 :: Test
 test_create_new_head_1 = TestCase (assertEqual "." (13,12) (create_new_head [(12,13),(12,12),(11,12)] (1,-1)))
@@ -33,18 +33,17 @@ test_check_column_occupied_2 = TestCase (assertEqual "." False (check_column_occ
 test_create_board :: Test
 test_create_board = TestCase (assertEqual "." ["...","..."] (create_board [] 2 3 [] []))
 
-
 tests :: Test
-tests = TestList [TestLabel "game_logic" test_create_new_head_1,
-                  TestLabel "game_logic" test_create_new_head_2,
-                  TestLabel "game_logic" test_create_new_tail_1,
-                  TestLabel "game_logic" test_create_new_tail_2,
-                  TestLabel "game_logic" test_update_snake,
-                  TestLabel "view_logic" test_get_objects_in_row,
-                  TestLabel "view_logic" test_create_row,
-                  TestLabel "view_logic" test_check_column_occupied_1,
-                  TestLabel "view_logic" test_check_column_occupied_2,
-                  TestLabel "view_logic" test_create_board]
+tests = TestList [TestLabel "Snake" test_create_new_head_1,
+                  TestLabel "Snake" test_create_new_head_2,
+                  TestLabel "Snake" test_create_new_tail_1,
+                  TestLabel "Snake" test_create_new_tail_2,
+                  TestLabel "Snake" test_update_snake,
+                  TestLabel "View" test_get_objects_in_row,
+                  TestLabel "View" test_create_row,
+                  TestLabel "View" test_check_column_occupied_1,
+                  TestLabel "View" test_check_column_occupied_2,
+                  TestLabel "View" test_create_board]
 
 main :: IO Counts
 main = runTestTT tests
