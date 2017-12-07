@@ -4,7 +4,7 @@
 --On target, add length to snake
 --On touching snake or edge, kill snake, end game
 
--- import System.IO
+import System.IO
 import Control.Concurrent (threadDelay)
 import System.Console.ANSI (cursorUpLine)
 
@@ -24,7 +24,6 @@ start_game = do
 
 game_loop :: [(Int,Int)] -> (Int,Int) -> (Int,Int) -> [(Int,Int)] -> Int -> IO ()
 game_loop snake direction board_limits targets delay = do
-    -- let key = poll_inputs
     let has_eaten = eat_target snake targets
     let updated_snake = update_snake snake direction has_eaten
     render updated_snake board_limits targets
@@ -32,9 +31,9 @@ game_loop snake direction board_limits targets delay = do
     game_loop updated_snake direction board_limits targets delay
 
 render :: [(Int,Int)] -> (Int,Int) -> [(Int,Int)] -> IO ()
-render snake board_x_y targets = do
-    let board_view = create_board [] (fst board_x_y) (snd board_x_y) snake targets
-    cursorUpLine 20
+render snake board_limits targets = do
+    let board_view = create_board [] (fst board_limits) (snd board_limits) snake targets
+    cursorUpLine (fst board_limits)
     display_board board_view
 
 main = start_game

@@ -2,6 +2,11 @@ module InOut where
 
 import System.IO
 
+import System.Console.ANSI
+import Control.Concurrent
+import Control.Monad
+import Data.Maybe
+
 create_display_buffer :: Int -> IO ()
 create_display_buffer row_number
     | row_number > 1 = print row_number >> create_display_buffer (row_number - 1)
