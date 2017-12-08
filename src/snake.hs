@@ -2,7 +2,7 @@ module Snake where
 
 eat_target :: [(Int,Int)] -> [(Int,Int)] -> Bool
 eat_target snake targets = do
-    let eaten = False -- without condition snake will not grow
+    let eaten = True -- without condition snake will not grow
     eaten
 
 update_snake :: [(Int,Int)] -> (Int,Int) -> Bool -> [(Int,Int)]
@@ -22,3 +22,4 @@ create_new_tail :: [(Int,Int)] -> Bool -> [(Int,Int)]
 create_new_tail snake eaten
     | eaten == True = snake
     | otherwise     = init snake
+
