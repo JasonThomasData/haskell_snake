@@ -9,29 +9,31 @@ get_direction key_pressed
     | key_pressed == 'l'  = ( 0, 1)
     | otherwise           = ( 0, 0)
 
-{-
+
 --BETTER--
 
-get_key_press :: Char -> Char
-get_key_press last_pressed = do
-    hSetBuffering stdin NoBuffering
+get_key_press :: IO Char
+get_key_press = do
     ready <- hReady stdin
-    if ready == True
-        then do
-            pressed <- getChar
-            pressed
-        else do
-            last_pressed
+    if ready
+        then getChar
+        else return '.'
 
-loop_better :: Char -> IO ()
-loop_better last_pressed = do
+loop_better :: IO ()
+loop_better = do
     threadDelay 200000
-    let pressed = get_key_press last_pressed
-    loop_better pressed
--}
+    pressed <- get_key_press
+    print pressed
+    loop_better
+
+main = do
+    hSetEcho stdin False
+    hSetBuffering stdin NoBuffering
+    loop_better
 
 --BASIC--
 
+{-
 loop :: Char -> IO ()
 loop last_pressed = do
     threadDelay 200000
@@ -48,3 +50,5 @@ loop last_pressed = do
 
 main = do
     loop '.'
+-}
+
