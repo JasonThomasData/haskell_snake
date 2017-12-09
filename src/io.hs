@@ -14,11 +14,11 @@ set_buffer_settings = do
 
 display_instructions :: IO ()
 display_instructions = do
-    print "--SNAKE--"
-    print "h - left"
-    print "j - down"
-    print "k - up"
-    print "l - right"
+    putStrLn ".SNAKE."
+    putStrLn ".h - left."
+    putStrLn ".j - down."
+    putStrLn ".k - up."
+    putStrLn ".l - right."
 
 create_display_buffer :: Int -> IO ()
 create_display_buffer row_number
