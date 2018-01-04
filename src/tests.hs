@@ -2,7 +2,7 @@ import Test.HUnit
 
 import Interact (checkOffBoard, checkOnBoard, checkCollision, checkPosVacant)
 import InOut (getDirection)
-import Snake (createNewHead, createNewTail, updateSnake)
+import Snake (eatObject, checkAlive, createNewHead, createNewTail, updateSnake)
 import View (createBoard, getObjectsInRow, checkColumnOccupied, createRow)
 
 test_createNewHead_1 :: Test
@@ -19,6 +19,21 @@ test_createNewTail_2 = TestCase (assertEqual "_" [(12,13),(12,12)] (createNewTai
 
 test_updateSnake :: Test
 test_updateSnake = TestCase (assertEqual "_" [(12,12),(12,13),(12,12)] (updateSnake [(12,13),(12,12),(11,12)] (0,-1) False))
+
+test_eatObject_1 :: Test
+test_eatObject_1 = TestCase (assertEqual "_" True (eatObject (1,2) [(1,1),(1,2),(2,2)]))
+
+test_eatObject_2 :: Test
+test_eatObject_2 = TestCase (assertEqual "_" False (eatObject (4,4) [(1,1),(1,2),(2,2)]))
+
+test_checkAlive_1 :: Test
+test_checkAlive_1 = TestCase (assertEqual "_" True (checkAlive [(1,1),(1,2),(2,2)] (2, 2)))
+
+test_checkAlive_2 :: Test
+test_checkAlive_2 = TestCase (assertEqual "_" False (checkAlive [(1,2),(1,2)] (2, 2)))
+
+test_checkAlive_3 :: Test
+test_checkAlive_3 = TestCase (assertEqual "_" False (checkAlive [(3,2),(2,2),(2,1),(1,1),(0,1)] (2, 2)))
 
 test_getObjectsInRow :: Test
 test_getObjectsInRow = TestCase (assertEqual "_" [(5,1),(5,7)] (getObjectsInRow [(5,1),(8,5),(5,7)] [] 5))
@@ -95,6 +110,11 @@ tests = TestList [TestLabel "Snake" test_createNewHead_1,
                   TestLabel "Snake" test_createNewTail_1,
                   TestLabel "Snake" test_createNewTail_2,
                   TestLabel "Snake" test_updateSnake,
+                  TestLabel "Snake" test_eatObject_1,
+                  TestLabel "Snake" test_eatObject_2,
+                  TestLabel "Snake" test_checkAlive_1,
+                  TestLabel "Snake" test_checkAlive_2,
+                  TestLabel "Snake" test_checkAlive_3,
                   TestLabel "View" test_getObjectsInRow,
                   TestLabel "View" test_createRow,
                   TestLabel "View" test_checkColumnOccupied_1,
