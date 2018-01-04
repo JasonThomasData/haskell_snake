@@ -1,9 +1,8 @@
 module InOut where
 
 import System.IO
-
+import System.Random (randomRIO)
 import System.Console.ANSI
-import Control.Concurrent
 import Control.Monad
 import Data.Maybe
 
@@ -15,10 +14,11 @@ setBufferSettings = do
 displayInstructions :: IO ()
 displayInstructions = do
     putStrLn "...SNAKE..."
-    putStrLn ".h - left.."
-    putStrLn ".j - down.."
-    putStrLn ".k - up...."
-    putStrLn ".l - right."
+    putStrLn ".h.left...."
+    putStrLn ".j.down...."
+    putStrLn ".k.up......"
+    putStrLn ".l.right..."
+    putStrLn "..........."
 
 createDisplayBuffer :: Int -> IO ()
 createDisplayBuffer row_number
@@ -27,7 +27,7 @@ createDisplayBuffer row_number
 
 toTopOfDisplay :: (Int,Int) -> IO ()
 toTopOfDisplay board_limits = do
-    let number_of_rows = (fst board_limits) + 1
+    let number_of_rows = fst board_limits + 1
     cursorUpLine number_of_rows
 
 displayBoard :: [[Char]] -> IO ()
@@ -42,11 +42,9 @@ getKeyPressed = do
         then getChar
         else return '.'
 
-getDirection :: Char -> (Int,Int) -> (Int,Int)
-getDirection key_pressed current_direction
-    | key_pressed == 'h' = ( 0,-1)
-    | key_pressed == 'j' = (-1, 0)
-    | key_pressed == 'k' = ( 1, 0)
-    | key_pressed == 'l' = ( 0, 1)
-    | otherwise          = current_direction
+getRandomPos :: (Int,Int) -> IO (Int,Int)
+getRandomPos board_limits = do
+    row_number <- randomRIO (0, fst board_limits)
+    col_number <- randomRIO (0, snd board_limits)
+    return (row_number, col_number)
 
