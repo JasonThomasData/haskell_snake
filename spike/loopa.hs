@@ -1,14 +1,13 @@
 import System.IO
 import Control.Concurrent
 
-get_direction :: Char -> (Int,Int)
+get_direction :: Char -> IO (Int,Int)
 get_direction key_pressed
-    | key_pressed == 'h'  = ( 0,-1)
-    | key_pressed == 'j'  = (-1, 0)
-    | key_pressed == 'k'  = ( 1, 0)
-    | key_pressed == 'l'  = ( 0, 1)
-    | otherwise           = ( 0, 0)
-
+    | key_pressed == 'h'  = return ( 0,-1)
+    | key_pressed == 'j'  = return (-1, 0)
+    | key_pressed == 'k'  = return ( 1, 0)
+    | key_pressed == 'l'  = return ( 0, 1)
+    | otherwise           = return ( 0, 0)
 
 --BETTER--
 
@@ -23,7 +22,9 @@ loop_better :: IO ()
 loop_better = do
     threadDelay 200000
     pressed <- get_key_press
+    direction <- get_direction pressed
     print pressed
+    print direction 
     loop_better
 
 main = do
