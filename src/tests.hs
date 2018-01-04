@@ -23,7 +23,7 @@ test_getObjectsInRow :: Test
 test_getObjectsInRow = TestCase (assertEqual "_" [(5,1),(5,7)] (getObjectsInRow [(5,1),(8,5),(5,7)] [] 5))
 
 test_createRow :: Test
-test_createRow = TestCase (assertEqual "_" "..O.O.XOX." (createRow [] 10 [(2,3),(6,5),(4,8)] [(3,7),(1,9)]))
+test_createRow = TestCase (assertEqual "_" "...O.O.XOX." (createRow [] 10 [(2,3),(6,5),(4,8)] [(3,7),(1,9)]))
 
 test_checkColumnOccupied_1 :: Test
 test_checkColumnOccupied_1 = TestCase (assertEqual "_" True (checkColumnOccupied [(5,1),(8,5),(5,7)] 7))
@@ -32,7 +32,7 @@ test_checkColumnOccupied_2 :: Test
 test_checkColumnOccupied_2 = TestCase (assertEqual "_" False (checkColumnOccupied [(5,1),(8,5),(5,7)] 8))
 
 test_createBoard :: Test
-test_createBoard = TestCase (assertEqual "_" ["...","..."] (createBoard [] 2 3 [] []))
+test_createBoard = TestCase (assertEqual "_" ["...","...","..."] (createBoard [] 2 2 [] []))
 
 test_getDirection_1 :: Test
 test_getDirection_1 = TestCase (assertEqual "_" ( 0,-1) (getDirection 'h' ( 1, 0)))
