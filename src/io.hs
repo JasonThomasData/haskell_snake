@@ -14,16 +14,21 @@ setBufferSettings = do
 
 displayInstructions :: IO ()
 displayInstructions = do
-    putStrLn ".SNAKE."
-    putStrLn ".h - left."
-    putStrLn ".j - down."
-    putStrLn ".k - up."
+    putStrLn "...SNAKE..."
+    putStrLn ".h - left.."
+    putStrLn ".j - down.."
+    putStrLn ".k - up...."
     putStrLn ".l - right."
 
 createDisplayBuffer :: Int -> IO ()
 createDisplayBuffer row_number
     | row_number > 1 = print row_number >> createDisplayBuffer (row_number - 1)
     | otherwise      = print row_number
+
+toTopOfDisplay :: (Int,Int) -> IO ()
+toTopOfDisplay board_limits = do
+    let number_of_rows = (fst board_limits) + 1
+    cursorUpLine number_of_rows
 
 displayBoard :: [[Char]] -> IO ()
 displayBoard rows
