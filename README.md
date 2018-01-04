@@ -19,8 +19,8 @@ This game assumes you have a qwerty keyboard
 
 # Build
 
-    ghc src/snake.hs src/view.hs src/io.hs -hidir build -odir build src/main.hs -o bin/snake_game
-    ghc src/snake.hs src/view.hs src/io.hs -hidir build -odir build src/tests.hs -o bin/tests
+    ghc src/interact.hs src/snake.hs src/view.hs src/io.hs -hidir build -odir build src/tests.hs -o bin/tests
+    ghc src/interact.hs src/snake.hs src/view.hs src/io.hs -hidir build -odir build src/main.hs -o bin/snake_game
 
 # Run
 
