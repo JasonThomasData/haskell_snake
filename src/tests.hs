@@ -1,8 +1,7 @@
 import Test.HUnit
 
 import Interact (checkOffBoard, checkOnBoard, checkCollision, checkPosVacant)
-import InOut (getDirection)
-import Snake (eatObject, checkAlive, createNewHead, createNewTail, updateSnake)
+import Snake (eatObject, checkAlive, createNewHead, createNewTail, updateSnake, getDirection)
 import View (createBoard, getObjectsInRow, checkColumnOccupied, createRow)
 
 test_createNewHead_1 :: Test

@@ -15,12 +15,15 @@ This game assumes you have a qwerty keyboard
     sudo apt-get install cabal-install
     cabal update
     cabal install ansi-terminal
-    cabal install hUnit
+    cabal install HUnit
+    cabal install random 
 
 # Build
 
     ghc src/interact.hs src/snake.hs src/view.hs src/io.hs -hidir build -odir build src/tests.hs -o bin/tests
+    rm build/*
     ghc src/interact.hs src/snake.hs src/view.hs src/io.hs -hidir build -odir build src/main.hs -o bin/snake_game
+    rm build/*
 
 # Run
 
